@@ -1,0 +1,5 @@
+@import url(reset.css);
+
+#field > canvas{
+    position: absolute;
+}
