@@ -2,10 +2,13 @@ class UI{
     private _field : Field;
     private _uiField : HTMLElement;
     private _moneyElement : HTMLElement;
+    private _slider : HTMLInputElement;
     constructor(field : Field){
         this._field = field;
         this._uiField = document.createElement("div");
         this._moneyElement = document.querySelector("#money-amount") as HTMLElement;
+        this._slider = document.querySelector("#game-speed") as HTMLInputElement;
+        this.SliderChangesHandler();
         this.ShowField();
     }
     private ShowField(){
@@ -40,6 +43,15 @@ class UI{
     }
     public UpdateUserStats(user : User){
         this._moneyElement.textContent = user.Money.toString();
+    }
+    private SliderChangesHandler(){
+        this._slider.addEventListener('mouseup', () => {
+            let speed = this._slider.value;
+            (document.querySelector("#speed-label") as HTMLElement).textContent = speed;
+
+            Settings.Speed = parseInt(speed, 10);
+            console.log(Settings.Speed);
+        });
     }
 
 }

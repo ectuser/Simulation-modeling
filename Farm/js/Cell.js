@@ -5,13 +5,12 @@ class Cell extends GameObject {
         this._stateCounter = 0;
         this.actions = setInterval(() => {
             // this.UpdateState();
-        }, 5000);
+        }, Settings.Speed);
         this._state = Settings.CellStates[this._stateCounter];
         this._ui = ui;
         this._user = user;
         this._ui.ShowCell(this);
         clearInterval(this.actions);
-        // this.Actions();
     }
     get State() {
         return this._state;
@@ -25,7 +24,7 @@ class Cell extends GameObject {
             clearInterval(this.actions);
             this.actions = setInterval(() => {
                 this.UpdateState();
-            }, 5000);
+            }, Settings.Speed);
         }
         else {
             this._stateCounter = 0;

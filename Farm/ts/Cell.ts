@@ -6,7 +6,8 @@ class Cell extends GameObject{
     public CanvasElement : HTMLCanvasElement | undefined;
     private actions = setInterval(() => {
         // this.UpdateState();
-    }, 5000);
+    }, Settings.Speed);
+
     constructor(position : Point, ui : UI, user : User){
         super(position);
 
@@ -15,7 +16,6 @@ class Cell extends GameObject{
         this._user = user;
         this._ui.ShowCell(this);
         clearInterval(this.actions);
-        // this.Actions();
     }
     public get State(){
         return this._state;
@@ -29,7 +29,7 @@ class Cell extends GameObject{
             clearInterval(this.actions);
             this.actions = setInterval(() => {
                 this.UpdateState();
-            }, 5000);
+            }, Settings.Speed);
         }
         else{
             this._stateCounter = 0;

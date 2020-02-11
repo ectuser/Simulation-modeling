@@ -4,6 +4,8 @@ class UI {
         this._field = field;
         this._uiField = document.createElement("div");
         this._moneyElement = document.querySelector("#money-amount");
+        this._slider = document.querySelector("#game-speed");
+        this.SliderChangesHandler();
         this.ShowField();
     }
     ShowField() {
@@ -38,5 +40,13 @@ class UI {
     }
     UpdateUserStats(user) {
         this._moneyElement.textContent = user.Money.toString();
+    }
+    SliderChangesHandler() {
+        this._slider.addEventListener('mouseup', () => {
+            let speed = this._slider.value;
+            document.querySelector("#speed-label").textContent = speed;
+            Settings.Speed = parseInt(speed, 10);
+            console.log(Settings.Speed);
+        });
     }
 }
