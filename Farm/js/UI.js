@@ -1,18 +1,13 @@
 "use strict";
 class UI {
-    // private _fieldContext : CanvasRenderingContext2D;
     constructor(field) {
         this._field = field;
         this._uiField = document.createElement("div");
-        // this._fieldContext = this._uiField.getContext('2d') as CanvasRenderingContext2D;
+        this._moneyElement = document.querySelector("#money-amount");
         this.ShowField();
     }
     ShowField() {
-        // this._uiField.height = Settings.Height * Settings.PixelsPerUnit;
-        // this._uiField.width = Settings.Height * Settings.PixelsPerUnit;
         this._uiField.id = "field";
-        // this._fieldContext.fillStyle = "#FFA500";
-        // this._fieldContext.fillRect(0, 0, this._uiField.width, this._uiField.height);
         let body = document.body;
         body.appendChild(this._uiField);
     }
@@ -40,5 +35,8 @@ class UI {
         let ctx = canvas.getContext('2d');
         ctx.fillStyle = cell.State.Color;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    UpdateUserStats(user) {
+        this._moneyElement.textContent = user.Money.toString();
     }
 }
