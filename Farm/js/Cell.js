@@ -3,14 +3,11 @@ class Cell extends GameObject {
     constructor(position, ui, user) {
         super(position);
         this._stateCounter = 0;
-        this.actions = setInterval(() => {
-            // this.UpdateState();
-        }, Settings.Speed);
+        this._localCounter = 0;
         this._state = Settings.CellStates[this._stateCounter];
         this._ui = ui;
         this._user = user;
         this._ui.ShowCell(this);
-        clearInterval(this.actions);
     }
     get State() {
         return this._state;
@@ -21,19 +18,35 @@ class Cell extends GameObject {
         if (this._stateCounter === 0) {
             this._stateCounter++;
             this.ChangeState(Settings.CellStates[this._stateCounter]);
-            clearInterval(this.actions);
-            this.actions = setInterval(() => {
-                this.UpdateState();
-            }, Settings.Speed);
         }
         else {
             this._stateCounter = 0;
+            this._localCounter = 0;
             this.ChangeState(Settings.CellStates[this._stateCounter]);
-            clearInterval(this.actions);
         }
     }
     UpdateState() {
-        if (this._stateCounter < Settings.CellStates.length - 1) {
+        console.log(this._localCounter);
+        if (this._stateCounter < Settings.CellStates.length - 1 && this._stateCounter > 0) {
+            this._localCounter++;
+            // this._stateCounter++;
+            this.CheckLocalCounter();
+        }
+    }
+    CheckLocalCounter() {
+        if (this._localCounter === 10) {
+            this._stateCounter++;
+            this.ChangeState(Settings.CellStates[this._stateCounter]);
+        }
+        else if (this._localCounter === 30) {
+            this._stateCounter++;
+            this.ChangeState(Settings.CellStates[this._stateCounter]);
+        }
+        else if (this._localCounter === 60) {
+            this._stateCounter++;
+            this.ChangeState(Settings.CellStates[this._stateCounter]);
+        }
+        else if (this._localCounter === 80) {
             this._stateCounter++;
             this.ChangeState(Settings.CellStates[this._stateCounter]);
         }

@@ -53,5 +53,9 @@ class UI{
             console.log(Settings.Speed);
         });
     }
+    public UpdateDay(number : number){
+        let dayCounter : HTMLElement = document.querySelector("#day") as HTMLElement;
+        dayCounter.textContent = number.toString();
+    }
 
 }

@@ -4,7 +4,7 @@ class Settings {
 Settings.Width = 4;
 Settings.Height = 4;
 Settings.PixelsPerUnit = 100;
-Settings.Speed = 2000;
+Settings.Speed = 100;
 Settings.CellStates = [
     new CellState("empty", "#e6f2c7", -2),
     new CellState("seeds", "#000", 0),

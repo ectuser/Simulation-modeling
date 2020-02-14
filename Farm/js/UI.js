@@ -49,4 +49,8 @@ class UI {
             console.log(Settings.Speed);
         });
     }
+    UpdateDay(number) {
+        let dayCounter = document.querySelector("#day");
+        dayCounter.textContent = number.toString();
+    }
 }

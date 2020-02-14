@@ -2,11 +2,13 @@ class Field{
     private _ui : UI;
     private _cells : Cell[] = [];
     private _user : User = new User();
+    private _day = 0;
 
     constructor(){
         this._ui = new UI(this);
         this.InitCells();
         this.InitUser();
+        this.Actions();
     }
     private InitUser(){
         this._ui.UpdateUserStats(this._user);
@@ -22,6 +24,16 @@ class Field{
             }
         }
     }
+    private Actions(){
+        let inter = setInterval(() => {
+            this._cells.forEach((cell : Cell) => {
+                cell.UpdateState();
+            });
+            this._day++;
+            this._ui.UpdateDay(this._day);
+        }, Settings.Speed);
+    }
+    
 
 
 
