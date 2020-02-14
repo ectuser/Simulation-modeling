@@ -4,10 +4,13 @@ class Field {
         this._cells = [];
         this._user = new User();
         this._day = 0;
+        this.inter = setInterval(() => {
+            this.InterIteration();
+        }, Settings.Speed);
         this._ui = new UI(this);
         this.InitCells();
         this.InitUser();
-        this.Actions();
+        // this.Actions();
     }
     InitUser() {
         this._ui.UpdateUserStats(this._user);
@@ -22,13 +25,18 @@ class Field {
             }
         }
     }
-    Actions() {
-        let inter = setInterval(() => {
-            this._cells.forEach((cell) => {
-                cell.UpdateState();
-            });
-            this._day++;
-            this._ui.UpdateDay(this._day);
+    InterIteration() {
+        this._cells.forEach((cell) => {
+            cell.UpdateState();
+        });
+        this._day++;
+        this._ui.UpdateDay(this._day);
+        console.log(Settings.Speed);
+    }
+    UpdateInter() {
+        clearInterval(this.inter);
+        this.inter = setInterval(() => {
+            this.InterIteration();
         }, Settings.Speed);
     }
 }

@@ -50,6 +50,7 @@ class UI{
             (document.querySelector("#speed-label") as HTMLElement).textContent = speed;
 
             Settings.Speed = parseInt(speed, 10);
+            this._field.UpdateInter();
             console.log(Settings.Speed);
         });
     }

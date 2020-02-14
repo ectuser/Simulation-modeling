@@ -46,6 +46,7 @@ class UI {
             let speed = this._slider.value;
             document.querySelector("#speed-label").textContent = speed;
             Settings.Speed = parseInt(speed, 10);
+            this._field.UpdateInter();
             console.log(Settings.Speed);
         });
     }
