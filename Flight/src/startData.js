@@ -4,15 +4,6 @@ class StartData{
         this.angle = angle;
         this.speed = speed;
     }
-    // get height(){
-    //     return this.height;
-    // }
-    // get angle(){
-    //     return this.angle;
-    // }
-    // get speed(){
-    //     return this.speed;
-    // }
 }
 
 export { StartData };
