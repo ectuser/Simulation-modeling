@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/vendor.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="height-data">Height</label>
+                <input type="number" class="form-control" id="height-data" placeholder="Type height">
+            </div>
+            <div class="form-group">
+                <label for="angle-data">Angle</label>
+                <input type="number" class="form-control" id="angle-data" placeholder="Type angle">
+            </div>
+            <div class="form-group">
+                <label for="speed-data">Speed</label>
+                <input type="number" class="form-control" id="speed-data" placeholder="Type start speed">
+            </div>
+            <button type="button" class="btn btn-primary" id="start-button">Submit</button>
+        </form>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
