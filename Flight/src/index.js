@@ -27,7 +27,7 @@ class Main{
         this.radAngle = startData.angle * Math.PI / 180;
         this.cosAngle = Math.cos(this.radAngle);
         this.sinAngle = Math.sin(this.radAngle);
-        this.secondsStep = 0.1;
+        // this.secondsStep = 0.1;
         this.g = 9.81;
 
         this.points = [this.currentPoint];
@@ -52,10 +52,10 @@ class Main{
                     });
                     this.ui.scatterChart.update();
                 }
-                this.t += this.secondsStep;
+                this.t += Settings.GetDelay();
                 await this.ui.UpdateTimer(this.t);
             }
-            await this.Sleep(Settings.GetDelay() * 1000);
+            await this.Sleep(100);
         }
     }
     async CountNewPoint(){
