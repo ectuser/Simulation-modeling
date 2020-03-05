@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/vendor.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card col-lg-4">
+                <div class="card-body">
+                    <h5 class="card-title">Your budget</h5>
+                    <p class="card-text">
+                        <p>RUB : <span id="rub-amount">10000</span></p>
+                        <p>EUR : <span id="eur-amount">0</span></p>
+                        <p>USD : <span id="usd-amount">0</span></p>
+                    </p>
+                </div>
+            </div>
+            <div class="card col-lg-4">
+                <div class="card-body">
+                    <h5 class="card-title">Current rates:</h5>
+                    <p class="card-text">
+                        <p>RUB : <span id="rub-rate">1</span></p>
+                        <p>EUR : <span id="eur-rate">73.79</span></p>
+                        <p>USD : <span id="usd-rate">66.30</span></p>
+                        <form class="text-center">
+                            <select class="form-control" id="currencies-select-id">
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                            </select>
+                            <button type="button" class="btn btn-info mt-2" id="show-rates-button">Show rates</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+            <div class="card col-lg-4">
+                <div class="card-body">
+                    <h5 class="card-title">Simulation and exchange:</h5>
+                    <div class="card-text">
+                        <form class="row">
+                            <p class="col-md-4">Simulate for</p>
+                            <input class="col-md-6 form-control" type="number" name="simulation-duration-input" id="simulation-duration-input" value="0">
+                            <button type="button" class="btn btn-primary col-md-2" id="simulate-button">Start</button>
+                        </form>
+
+                        <form class="mt-5">
+                            <div class="row">
+                                <select class="col-md-6 form-control" name="currency-exchange-select" id="currency-exchange-select">
+                                    <option value="Buy" selected>Buy</option>
+                                    <option value="Sell">Sell</option>
+                                </select>
+                                <select class="col-md-6 form-control" name="choice-currency-select" id="choice-currency-select">
+                                    <option value="EUR" selected>EUR</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                            <div class="row mt-4">
+                                <input class="col-md-6 form-control" type="number" name="exchange-input" id="exchange-input" value="0">
+                                <button type="button" class="btn btn-primary col-md-6" id="exchange-button">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="for-chart" class="text-center w-50 h-50">
+            <!-- <canvas id="currency-chart" width="400" height="400"></canvas> -->
+        </div>
+        
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
