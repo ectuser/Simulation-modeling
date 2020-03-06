@@ -47,6 +47,7 @@ class Main{
         await this.Count(days);
         let select = document.querySelector("#currencies-select-id") as HTMLSelectElement;
         let whichRateStr = select.options[select.selectedIndex].value;
+        await this.ui.ChangeCurrentRates(this.ratesHistory[this.ratesHistory.length - 1]);
         await this.ui.DrawGraph(this.ratesHistory, CurrencyName[whichRateStr as keyof typeof CurrencyName]);
     }
 
@@ -55,8 +56,43 @@ class Main{
         let highlightedNumber = Math.random() * (max - min) + min;
         return highlightedNumber;
     }
-    private CountRates(curRate : CurrencyRate){
 
+    public async CurrencyChange(amount : number, currencyFrom : CurrencyName, currencyTo : CurrencyName){
+        let currencyFromRate;
+        let currencyToRate
+        try{
+            currencyFromRate = await this.GetRateByName(currencyFrom);
+            currencyToRate = await this.GetRateByName(currencyTo);
+        }catch(e){
+            throw new Error(e);
+        }
+
+        for (let cur of this.userData.currencies){
+            if (currencyFrom === cur.name){
+                if (cur.amount > amount){
+                    cur.amount -= amount;
+                }
+                else{
+                    throw new Error("You don't have enough money");
+                }
+            }
+        }
+
+        for (let cur of this.userData.currencies){
+            if (currencyTo === cur.name){
+                cur.amount += amount * currencyFromRate / currencyToRate;
+            }
+        }
+
+        this.ui.UpdateBudget(this.userData);
+    }
+    private async GetRateByName(name : CurrencyName){
+        for (let cur of this.ratesHistory[this.ratesHistory.length - 1].currencies){
+            if (name === cur.name){
+                return cur.rate;
+            }
+        }
+        throw new Error("err");
     }
 
 }

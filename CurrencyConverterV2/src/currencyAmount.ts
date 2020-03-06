@@ -2,11 +2,11 @@ import { CurrencyName } from "./currencyName";
 
 class CurrencyAmount{
     public name : CurrencyName;
-    public rate : number;
+    public amount : number;
 
-    constructor(name : CurrencyName, rate : number){
+    constructor(name : CurrencyName, amount : number){
         this.name = name;
-        this.rate = rate;
+        this.amount = amount;
     }
 }
 
