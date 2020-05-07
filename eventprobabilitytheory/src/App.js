@@ -14,18 +14,16 @@ const App = () => {
 	return (
 		<div>
 			<Navbar bg="dark" variant="dark">
-				<Navbar.Brand href="#home">Navbar</Navbar.Brand>
+					<Link to="/">
+							<Navbar.Brand>
+								Home
+							</Navbar.Brand>
+					</Link>
 				<Nav className="mr-auto">
-					{/* <Nav.Link href="/yes_no_game">Yes No Game</Nav.Link>
-					<Nav.Link href="/magic_ball">Magic Ball</Nav.Link> */}
-					{/* <Link to="/yes_no_game">Yes No Game</Link>
-					<Link to="/magic_ball">Magic Ball</Link> */}
+					<Nav.Link><Link to="/yes_no_game">Yes No Game</Link></Nav.Link>
+					<Nav.Link><Link to="/magic_ball">Magic Ball</Link></Nav.Link>
 				</Nav>
 			</Navbar>
-			{/* <div>
-				<div><Link to="/yes_no_game">Yes No Game</Link></div>
-				<div><Link to="/magic_ball">Magic Ball</Link></div>
-			</div> */}
 
 			<Switch>
 				<Route path="/yes_no_game">

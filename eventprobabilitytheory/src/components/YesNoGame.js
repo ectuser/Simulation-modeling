@@ -11,12 +11,12 @@ const YesNoGame = () => {
 
     return (
         <Container>
-            <Form.Control placeholder="Your question" />
-            <Button variant="info" onClick={ getAnswer }>Primary</Button>
-            <Card style={{ width: '18rem', height: '10rem' }}>
+            <Form.Control placeholder="Your question" className="mt-2" />
+            <div className="text-center m-3"><Button variant="info" onClick={ getAnswer }>Primary</Button></div>
+            <Card style={{ width: '18rem', height: '10rem', margin: '0 auto' }}>
                 <Card.Body>
                     <Card.Title >Answer: </Card.Title>
-                    <Card.Text class="text-center">
+                    <Card.Text className="text-center">
                         { answer }
                     </Card.Text>
                 </Card.Body>
