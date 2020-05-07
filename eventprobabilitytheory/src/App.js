@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import YesNoGame from "./components/YesNoGame"
+import MagicBall from "./components/MagicBall"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
 	BrowserRouter as Router,
@@ -30,7 +31,7 @@ const App = () => {
 					<YesNoGame />
 				</Route>
 				<Route path="/magic_ball">
-					{/* Magic ball */}
+					<MagicBall />
 				</Route>
 			</Switch>
 		</div>
