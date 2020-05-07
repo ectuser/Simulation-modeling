@@ -20,8 +20,8 @@ const App = () => {
 							</Navbar.Brand>
 					</Link>
 				<Nav className="mr-auto">
-					<Nav.Link><Link to="/yes_no_game">Yes No Game</Link></Nav.Link>
-					<Nav.Link><Link to="/magic_ball">Magic Ball</Link></Nav.Link>
+					<Link to="/yes_no_game" className="mx-3">Yes No Game</Link>
+					<Link to="/magic_ball" className="mx-3">Magic Ball</Link>
 				</Nav>
 			</Navbar>
 
