@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { Button, Form, Card } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 const MagicBall = () => {
     const [answer, setAnswer] = useState("");

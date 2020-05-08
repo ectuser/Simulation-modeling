@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import YesNoGame from "./components/YesNoGame"
 import MagicBall from "./components/MagicBall"
+import {EventStatistics, EventsStatisticsProbabilityCount} from "./components/EventStatistics"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
 	BrowserRouter as Router,
@@ -9,9 +10,11 @@ import {
 	Route,
 	Link
   } from "react-router-dom";
-  import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
+
 
 const App = () => {
+
 	return (
 		<div>
 			<Navbar bg="dark" variant="dark">
@@ -21,21 +24,30 @@ const App = () => {
 							</Navbar.Brand>
 					</Link>
 				<Nav className="mr-auto">
-					<Link to="/yes_no_game" className="mx-3">Yes No Game</Link>
-					<Link to="/magic_ball" className="mx-3">Magic Ball</Link>
+					<Link to="/yes-no-game" className="mx-3">Yes No Game</Link>
+					<Link to="/magic-ball" className="mx-3">Magic Ball</Link>
+					<Link to="/events-statistics" className="mx-3">Event Statistics</Link>
 				</Nav>
 			</Navbar>
 
 			<Switch>
-				<Route path="/yes_no_game">
+				<Route path="/yes-no-game">
 					<YesNoGame />
 				</Route>
-				<Route path="/magic_ball">
+				<Route path="/magic-ball">
 					<MagicBall />
+				</Route>
+				<Route exact path="/events-statistics">
+					<EventStatistics />
+				</Route>
+				<Route exact path="/events-statistics/set-probabilities">
+					<EventsStatisticsProbabilityCount />
 				</Route>
 			</Switch>
 		</div>
 	)
 }
+
+
 
 export default App;
