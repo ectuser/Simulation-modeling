@@ -9,20 +9,34 @@ import { createStore } from 'redux'
 
 const initialState = {
 	shallRedicrectToNext : false,
-	amountOfEvents : 0
+	amountOfEvents : 0,
+	dataForStatistics : [],
+	labelsForStatistics : []
 }
 
 const reducer = (state = initialState, action) => {
   	if (action.type === 'CHANGE_REDIRECT'){
     	return {
 			shallRedicrectToNext : !state.shallRedicrectToNext,
-			amountOfEvents : state.amountOfEvents
+			amountOfEvents : state.amountOfEvents,
+			dataForStatistics : [...state.dataForStatistics],
+			labelsForStatistics : [...state.labelsForStatistics]
 		}
 	}
 	else if (action.type === 'SET_AMOUNT_OF_EVENTS'){
 		return {
 			shallRedicrectToNext : state.shallRedicrectToNext,
-			amountOfEvents : action.payload
+			amountOfEvents : action.payload,
+			dataForStatistics : [...state.dataForStatistics],
+			labelsForStatistics : [...state.labelsForStatistics]
+		}
+	}
+	else if (action.type === 'SET_DATASET_FOR_STATISTICS'){
+		return {
+			shallRedicrectToNext : state.shallRedicrectToNext,
+			amountOfEvents : state.amountOfEvents,
+			dataForStatistics : [...action.payload.data],
+			labelsForStatistics : [...action.payload.labels]
 		}
 	}
   	return state;
