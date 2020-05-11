@@ -17,24 +17,19 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   	if (action.type === 'CHANGE_REDIRECT'){
     	return {
+			...state,
 			shallRedicrectToNext : !state.shallRedicrectToNext,
-			amountOfEvents : state.amountOfEvents,
-			dataForStatistics : [...state.dataForStatistics],
-			labelsForStatistics : [...state.labelsForStatistics]
 		}
 	}
 	else if (action.type === 'SET_AMOUNT_OF_EVENTS'){
 		return {
-			shallRedicrectToNext : state.shallRedicrectToNext,
+			...state,
 			amountOfEvents : action.payload,
-			dataForStatistics : [...state.dataForStatistics],
-			labelsForStatistics : [...state.labelsForStatistics]
 		}
 	}
 	else if (action.type === 'SET_DATASET_FOR_STATISTICS'){
 		return {
-			shallRedicrectToNext : state.shallRedicrectToNext,
-			amountOfEvents : state.amountOfEvents,
+			...state,
 			dataForStatistics : [...action.payload.data],
 			labelsForStatistics : [...action.payload.labels]
 		}

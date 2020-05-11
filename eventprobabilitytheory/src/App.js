@@ -1,17 +1,18 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 import YesNoGame from "./components/YesNoGame"
 import MagicBall from "./components/MagicBall"
 import {EventStatistics, EventsStatisticsProbabilityCount} from "./components/EventStatistics"
 import DiceGame from "./components/DiceGame"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import DiscreteRandomVariable from "./components/DiscreteRandomVariable"
+import 'bootstrap/dist/css/bootstrap.min.css'
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Link
   } from "react-router-dom";
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap'
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
 					<Link to="/magic-ball" className="mx-3">Lab 8.2</Link>
 					<Link to="/events-statistics" className="mx-3">Lab 9</Link>
 					<Link to="/dice-game" className="mx-3">Lab 10</Link>
+					<Link to="/discrete-random-variable" className="mx-3">Lab 11</Link>
 				</Nav>
 			</Navbar>
 
@@ -47,6 +49,9 @@ const App = () => {
 				</Route>
 				<Route exact path="/dice-game">
 					<DiceGame />
+				</Route>
+				<Route exact path="/discrete-random-variable">
+					<DiscreteRandomVariable />
 				</Route>
 			</Switch>
 		</div>

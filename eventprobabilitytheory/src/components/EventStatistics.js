@@ -10,7 +10,6 @@ import {
 from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Bar } from 'react-chartjs-2';
-import Title from "./Title"
 
 const EventStatistics = () => {
     const input = useRef();
