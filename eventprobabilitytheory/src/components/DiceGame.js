@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import Title from "./Title"
 
 const DiceGame = () => {
 
@@ -88,7 +89,7 @@ const DiceGame = () => {
 
     return (
         <Container>
-            <h1 className="text-center">Dice Game</h1>
+            <Title>Dice Game</Title>
             <Row className="m-2">
                 <Col style={{lineHeight : '70px'}}>Face number</Col>
                 <Col style={{lineHeight : '70px'}}>Face </Col>

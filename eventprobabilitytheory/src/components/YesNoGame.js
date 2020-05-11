@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState, useRef} from 'react';
 import { Button, Form, Card, Container } from 'react-bootstrap';
+import Title from "./Title"
 
 const YesNoGame = () => {
     const [answer, setAnswer] = useState();
@@ -24,6 +25,7 @@ const YesNoGame = () => {
 
     return (
         <Container>
+            <Title>Yes No Game</Title>
             <Form.Control onChange={ change } ref={ myInput } 
                 type="range" 
                 className="w-50 mx-auto my-3"

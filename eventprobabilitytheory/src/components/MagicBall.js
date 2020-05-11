@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { Button, Form } from 'react-bootstrap';
+import Title from "./Title"
 
 const MagicBall = () => {
     const [answer, setAnswer] = useState("");
@@ -103,6 +104,7 @@ const MagicBall = () => {
 
     return (
         <Container className="text-center">
+             <Title>Magic 8 Ball</Title>
             <Form.Control placeholder="Your question" className="m-2" />
             <Button onClick={ getAnswer } className="m-2">Answer</Button>
             <div className="mb-5">{ answer }</div>
