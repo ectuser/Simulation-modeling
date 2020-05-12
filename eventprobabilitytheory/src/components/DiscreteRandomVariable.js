@@ -11,7 +11,9 @@ const initialState = {events : [],
     expectedValue : 0,
     variance : 0,
     expectedValueError : 0,
-    varianceError : 0
+    varianceError : 0,
+    chiSquare : 0,
+    chiSquareFromTable : 0
 };
 
 const reducer = (state, action) => {
@@ -40,7 +42,9 @@ const reducer = (state, action) => {
             expectedValue : action.payload.expectedValue,
             variance : action.payload.variance,
             expectedValueError : action.payload.expectedValueError,
-            varianceError : action.payload.varianceError
+            varianceError : action.payload.varianceError,
+            chiSquare : action.payload.chiSquare,
+            chiSquareFromTable : action.payload.chiSquareFromTable
         }
     }
 }
@@ -116,10 +120,11 @@ const DiscreteRandomVariable = () => {
         sum -=  (Ex ** 2);
         return sum;
     }
-    const countChiSquare = async (xs, ps, N) => {
+    const countChiSquare = async (ps, N) => {
         let sum = 0;
-        for (let i = 0; i < xs.length; i++){
-            sum += ((xs[i] ** 2) / (N * ps[i]));
+        let events = state.events;
+        for (let i = 0; i < events.length; i++){
+            sum += ((events[i].amountOfSelections ** 2) / (N * ps[i]));
         }
         sum -= N;
         return sum;
@@ -137,7 +142,19 @@ const DiscreteRandomVariable = () => {
 
 
 
-    const roundTwoDecimal = (number) => Math.round((number + Number.EPSILON) * 100) / 100
+    const roundTwoDecimal = number => Math.round((number + Number.EPSILON) * 100) / 100;
+    const compareNumbers = (first, second) => {
+        if (first > second){
+            return ">"
+        }
+        else if (first === second){
+            return "="
+        }
+        else{
+            return "<"
+        }
+    }
+    const isRealMatchesToTheoretical = (first, second) => first > second;
 
     const solve = async (experimentsNumber) => {
         let xs = [];
@@ -162,22 +179,25 @@ const DiscreteRandomVariable = () => {
         const relativeMeasurementExError = absMeasurementExError / Math.abs(theoreticalEx);
         const relativeMeasurementVarianceError = absMeasurementVarianceError / Math.abs(theoreticalVariance);
 
-        const chiSquare = await countChiSquare(xs, realPs, experimentsNumber);
+        const chiSquare = await countChiSquare(ps, experimentsNumber);
         const alpha = 0.05;
-
-        // try {
-        //     let chiSquareFromTableValue = getChiSquareFromTable(alpha);
-        // } catch (error) {
-            
-        // }
-        console.log(chiSquare);
+        let chiSquareFromTableValue;
+        try {
+            chiSquareFromTableValue = await getChiSquareFromTable(state.events.length, alpha);
+            console.log(chiSquare, chiSquareFromTableValue);
+        } catch (error) {
+            alert(error);
+            return;
+        }
 
 
         dispatch({type : "SET_COUNTED_DATA", payload : {
             expectedValue : realEx,
             variance : realVariance,
             expectedValueError : relativeMeasurementExError,
-            varianceError : relativeMeasurementVarianceError
+            varianceError : relativeMeasurementVarianceError,
+            chiSquare : chiSquare,
+            chiSquareFromTable : chiSquareFromTableValue
         }})
     }
 
@@ -256,6 +276,7 @@ const DiscreteRandomVariable = () => {
                 } />
                 <div>Expected value : {roundTwoDecimal(state.expectedValue)} (error = {roundTwoDecimal(state.expectedValueError * 100)} % )</div>
                 <div>Variance : {roundTwoDecimal(state.variance)} (error = {roundTwoDecimal(state.varianceError * 100)} % )</div>
+                <div>Chi squared : {state.chiSquare} {compareNumbers(state.chiSquare, state.chiSquareFromTable)} {state.chiSquareFromTable} => {isRealMatchesToTheoretical(state.chiSquare, state.chiSquareFromTable).toString()}</div>
 
             </div>
         </Container>
