@@ -1,5 +1,5 @@
 import React, {useRef, useReducer} from 'react'
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import { Form, Row, Col, Container, Button, Card } from 'react-bootstrap';
 import Title from "./Title"
 import { Bar } from 'react-chartjs-2';
 import chiSquareTable from "../chiSquareTable";
@@ -276,7 +276,15 @@ const DiscreteRandomVariable = () => {
                 } />
                 <div>Expected value : {roundTwoDecimal(state.expectedValue)} (error = {roundTwoDecimal(state.expectedValueError * 100)} % )</div>
                 <div>Variance : {roundTwoDecimal(state.variance)} (error = {roundTwoDecimal(state.varianceError * 100)} % )</div>
-                <div>Chi squared : {state.chiSquare} {compareNumbers(state.chiSquare, state.chiSquareFromTable)} {state.chiSquareFromTable} => {isRealMatchesToTheoretical(state.chiSquare, state.chiSquareFromTable).toString()}</div>
+                <div>Chi squared : {state.chiSquare} {compareNumbers(state.chiSquare, state.chiSquareFromTable)} {state.chiSquareFromTable}</div>
+                <Card style={{ width: '18rem', height: '10rem', margin: '0 auto' }}>
+                <Card.Body>
+                    <Card.Title >Verdict: </Card.Title>
+                    <Card.Text className="text-center">
+                        { isRealMatchesToTheoretical(state.chiSquare, state.chiSquareFromTable).toString() }
+                    </Card.Text>
+                </Card.Body>
+            </Card>
 
             </div>
         </Container>
