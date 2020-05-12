@@ -129,16 +129,10 @@ const DiscreteRandomVariable = () => {
         sum -= N;
         return sum;
     }
+
     
-    const getChiSquareFromTable = async (m, alpha) => {
-        let arr = [0.95,	0.90,	0.80,	0.70,	0.50,	0.30,	0.20,	0.10,	0.05,	0.01,	0.001];
-        for (let i = 0; i < arr.length; i++){
-            if (arr[i] === alpha){
-                return chiSquareTable[m][i];
-            }
-        }
-        throw new Error("Can't define alpha");
-    }
+    const alphas = [0.95,	0.90,	0.80,	0.70,	0.50,	0.30,	0.20,	0.10,	0.05,	0.01,	0.001];
+    const getChiSquareFromTable = async (m, alpha) => chiSquareTable[m][alphas.indexOf(alpha)];
 
 
 
@@ -244,7 +238,7 @@ const DiscreteRandomVariable = () => {
             {state.events.map((item, i) => (
                 <Row key={i} className="m-2">
                     <Col>{item.name}</Col>
-                    <Col><Form.Control ref={el => item.ref = el} type="number" placeholder="Probability" /></Col>
+                    <Col><Form.Control ref={el => item.ref = el} type="number" placeholder="Probability %" /></Col>
                 </Row>
             ))}
             <div>
@@ -278,13 +272,13 @@ const DiscreteRandomVariable = () => {
                 <div>Variance : {roundTwoDecimal(state.variance)} (error = {roundTwoDecimal(state.varianceError * 100)} % )</div>
                 <div>Chi squared : {state.chiSquare} {compareNumbers(state.chiSquare, state.chiSquareFromTable)} {state.chiSquareFromTable}</div>
                 <Card style={{ width: '18rem', height: '10rem', margin: '0 auto' }}>
-                <Card.Body>
-                    <Card.Title >Verdict: </Card.Title>
-                    <Card.Text className="text-center">
-                        { isRealMatchesToTheoretical(state.chiSquare, state.chiSquareFromTable).toString() }
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+                    <Card.Body>
+                        <Card.Title >Verdict: </Card.Title>
+                        <Card.Text className="text-center">
+                            { isRealMatchesToTheoretical(state.chiSquare, state.chiSquareFromTable).toString() }
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
 
             </div>
         </Container>
