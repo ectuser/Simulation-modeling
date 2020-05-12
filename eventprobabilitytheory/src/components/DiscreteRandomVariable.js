@@ -2,6 +2,7 @@ import React, {useRef, useReducer} from 'react'
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import Title from "./Title"
 import { Bar } from 'react-chartjs-2';
+import chiSquareTable from "../chiSquareTable";
 
 const initialState = {events : [], 
     startButton : "", 
@@ -115,10 +116,30 @@ const DiscreteRandomVariable = () => {
         sum -=  (Ex ** 2);
         return sum;
     }
+    const countChiSquare = async (xs, ps, N) => {
+        let sum = 0;
+        for (let i = 0; i < xs.length; i++){
+            sum += ((xs[i] ** 2) / (N * ps[i]));
+        }
+        sum -= N;
+        return sum;
+    }
+    
+    const getChiSquareFromTable = async (m, alpha) => {
+        let arr = [0.95,	0.90,	0.80,	0.70,	0.50,	0.30,	0.20,	0.10,	0.05,	0.01,	0.001];
+        for (let i = 0; i < arr.length; i++){
+            if (arr[i] === alpha){
+                return chiSquareTable[m][i];
+            }
+        }
+        throw new Error("Can't define alpha");
+    }
+
+
 
     const roundTwoDecimal = (number) => Math.round((number + Number.EPSILON) * 100) / 100
 
-    const solve = async () => {
+    const solve = async (experimentsNumber) => {
         let xs = [];
         let ps = [];
         let realPs = [];
@@ -140,6 +161,17 @@ const DiscreteRandomVariable = () => {
 
         const relativeMeasurementExError = absMeasurementExError / Math.abs(theoreticalEx);
         const relativeMeasurementVarianceError = absMeasurementVarianceError / Math.abs(theoreticalVariance);
+
+        const chiSquare = await countChiSquare(xs, realPs, experimentsNumber);
+        const alpha = 0.05;
+
+        // try {
+        //     let chiSquareFromTableValue = getChiSquareFromTable(alpha);
+        // } catch (error) {
+            
+        // }
+        console.log(chiSquare);
+
 
         dispatch({type : "SET_COUNTED_DATA", payload : {
             expectedValue : realEx,
@@ -181,7 +213,7 @@ const DiscreteRandomVariable = () => {
         let chartData = await getChartData(tempEvents, experimentsNumber);
         dispatch({type : "SET_CHART_DATA", payload : chartData});
 
-        await solve();
+        await solve(experimentsNumber);
     }
 
     return(
