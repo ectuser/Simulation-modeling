@@ -5,7 +5,6 @@ import { Container, Form, Button } from 'react-bootstrap'
 import {MyContext} from "./FootballChampionship";
 
 const FootballChampionshipStartSettings = () => {
-
     const {dispatch} = useContext(MyContext);
     const { register, handleSubmit, errors } = useForm();
 

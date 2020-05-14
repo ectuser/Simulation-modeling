@@ -1,10 +1,6 @@
-import React, {useRef, useState, useReducer} from 'react';
+import React, {useRef} from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
 	Redirect
   } 
 from "react-router-dom";

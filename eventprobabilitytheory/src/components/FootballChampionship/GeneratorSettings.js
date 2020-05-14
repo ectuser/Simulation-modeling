@@ -4,8 +4,7 @@ import { Container, Form, Button } from 'react-bootstrap'
 import {MyContext} from "./FootballChampionship";
 
 const GeneratorSettings = () =>{
-
-    const {dispatch} = useContext(MyContext);
+    const {state, dispatch} = useContext(MyContext);
     const { register, handleSubmit, errors, setError } = useForm();
 
     const submitLambda = (data) => {
@@ -21,7 +20,6 @@ const GeneratorSettings = () =>{
         dispatch({type : "SET_LAMBDA", payload : lambda});
         dispatch({type : "NEXT_PAGE"});
     }
-
     return (
         <Container>
             <h2>Type lambda. I suggest you to use lambda &lt; 1 for football matches</h2>

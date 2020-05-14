@@ -7,12 +7,7 @@ import DiceGame from "./components/DiceGame"
 import DiscreteRandomVariable from "./components/DiscreteRandomVariable"
 import {FootballChampionship} from "./components/FootballChampionship/FootballChampionship"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
-  } from "react-router-dom";
+import {Switch, Route, Link} from "react-router-dom";
 import { Navbar, Nav } from 'react-bootstrap'
 
 
@@ -37,27 +32,13 @@ const App = () => {
 			</Navbar>
 
 			<Switch>
-				<Route path="/yes-no-game">
-					<YesNoGame />
-				</Route>
-				<Route path="/magic-ball">
-					<MagicBall />
-				</Route>
-				<Route exact path="/events-statistics">
-					<EventStatistics />
-				</Route>
-				<Route exact path="/events-statistics/set-probabilities">
-					<EventsStatisticsProbabilityCount />
-				</Route>
-				<Route exact path="/dice-game">
-					<DiceGame />
-				</Route>
-				<Route exact path="/discrete-random-variable">
-					<DiscreteRandomVariable />
-				</Route>
-				<Route exact path="/football-championship">
-					<FootballChampionship />
-				</Route>
+				<Route path="/yes-no-game" component={ YesNoGame } />
+				<Route path="/magic-ball" component={MagicBall}/>
+				<Route exact path="/events-statistics" component={EventStatistics}/>
+				<Route exact path="/events-statistics/set-probabilities" component={EventsStatisticsProbabilityCount} />
+				<Route exact path="/dice-game" component={DiceGame} />
+				<Route exact path="/discrete-random-variable" component={DiscreteRandomVariable} />
+				<Route exact path="/football-championship" component={FootballChampionship} />
 			</Switch>
 		</div>
 	)
