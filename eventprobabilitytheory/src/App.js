@@ -5,7 +5,7 @@ import MagicBall from "./components/MagicBall"
 import {EventStatistics, EventsStatisticsProbabilityCount} from "./components/EventStatistics"
 import DiceGame from "./components/DiceGame"
 import DiscreteRandomVariable from "./components/DiscreteRandomVariable"
-import FootballChampionship from "./components/FootballChampionship"
+import {FootballChampionship} from "./components/FootballChampionship/FootballChampionship"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
 	BrowserRouter as Router,
